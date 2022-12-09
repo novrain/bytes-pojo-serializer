@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd;">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cn.iota.jiot</groupId>
+    <artifactId>jiot-bytes-pojo-serializer</artifactId>
+    <version>1.0.0</version>
+
+    <name>jiot-bytes-pojo-serializer</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <jiot.version>0.0.1-SNAPSHOT</jiot.version>
+        <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+        <everit-org.json-schema.version>1.14.1</everit-org.json-schema.version>
+        <junit.version>5.9.2</junit.version>
+        <junit.jupiter.version>${junit.version}</junit.jupiter.version>
+    </properties>
+
+
+    <!--each module should use this-->
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-buffer</artifactId>
+            <version>4.1.89.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>

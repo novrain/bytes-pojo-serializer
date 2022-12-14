@@ -114,7 +114,7 @@ The SerializeMapper works according to some default rules and the information of
 ### Some assistant annotations
 
 * SerializeFieldOrder: a annotation ```target the class``` to specify the order of fields.
-* SerializeArrayOrListLength: a annotation to specify the length of an array or list.
+* SerializeArrayOrListLength: a annotation to specify the length or set length by ```refField``` of an array or list.
 
 ### Todo
 

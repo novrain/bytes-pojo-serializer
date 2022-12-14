@@ -1,5 +1,7 @@
 # 通过注解实现的Java序列化反序列化工具
 
+[英文](https://github.com/novrain/bytes-pojo-serializer/blob/master/README.md)
+
 通过逐渐将POJO对象序列化为字节流，或从字节流中反序列化为对象实例。
 
 使用Netty的ByteBuf，便于与Netty集成。

@@ -1,5 +1,7 @@
 # A Java Serializer/Deserializer Using Annotations
 
+[中文](https://github.com/novrain/bytes-pojo-serializer/blob/master/README_zh.md)
+
 By adding annotations to POJO objects and their fields, the serializer can encode POJO objects into a byte array and vice versa (by deserializer).
 
 We use ByteBuf from Netty.

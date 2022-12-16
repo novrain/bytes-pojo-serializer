@@ -62,7 +62,7 @@ public class ShortClass {
 }
 ```
 
-测试用例:
+字段序列化测试用例:
 
 ```Java
 public class ShortFieldSerializerTest {
@@ -92,6 +92,33 @@ public class ShortFieldSerializerTest {
 }
 ```
 
+对象序列化/反序列化用例:
+
+```java
+public class SerializerMapperTest {
+
+    private static SerializeMapper mapper;
+
+    @BeforeAll
+    static void init() {
+        mapper = new SerializeMapper();
+    }
+
+    @Test
+    void simpleShortClassTest() {
+        ShortClass sClass = new ShortClass();
+
+        ByteBuf buf = mapper.toBytes(sClass);
+        assertEquals(10, buf.readableBytes());
+
+        ShortClass deClass = mapper.fromBytesByClass(buf, ShortClass.class);
+        assertNotNull(deClass);
+
+        assertTrue(sClass.equals(deClass));
+    }
+}
+```
+
 ## 支持的数据类型和注解
 
 SerializeMapper有些默认的规则，配合注解完成序列化和反序列化的工作:
@@ -99,7 +126,7 @@ SerializeMapper有些默认的规则，配合注解完成序列化和反序列�
 * 整型和字符串及其包装类: 如果没有注解说明，将按照默认规则自动处理。
   * 类型决定字节流里的长度，比如short占两个字节.
   * 默认字节序为BIG_ENDIAN.
-* 整型和字符串及其包装类的数组或List: 如果没有注解说明，序列化将按照默认规则自动处理, 通过反射获取其长度信息; 反序列化需要通过注解，比如SerializeArrayOrListLength, 来告知长度.
+* 整型和字符串及其包装类的数组或List: 如果没有注解说明，序列化将按照默认规则自动处理, 通过反射获取其长度信息; 反序列化需要通过注解，比如```SerializeArrayOrListLength```, 来告知长度.
 * 对象字段: 将被嵌套递归处理.
 
 ### 注解

@@ -62,7 +62,7 @@ public class ShortClass {
 }
 ```
 
-The test:
+The FieldSerializer test:
 
 ```Java
 public class ShortFieldSerializerTest {
@@ -92,6 +92,33 @@ public class ShortFieldSerializerTest {
 }
 ```
 
+The SerializeMapper test:
+
+```java
+public class SerializerMapperTest {
+
+    private static SerializeMapper mapper;
+
+    @BeforeAll
+    static void init() {
+        mapper = new SerializeMapper();
+    }
+
+    @Test
+    void simpleShortClassTest() {
+        ShortClass sClass = new ShortClass();
+
+        ByteBuf buf = mapper.toBytes(sClass);
+        assertEquals(10, buf.readableBytes());
+
+        ShortClass deClass = mapper.fromBytesByClass(buf, ShortClass.class);
+        assertNotNull(deClass);
+
+        assertTrue(sClass.equals(deClass));
+    }
+}
+```
+
 ## Supported Data Types and Annotations
 
 The SerializeMapper works according to some default rules and the information of field's annotation:
@@ -99,7 +126,7 @@ The SerializeMapper works according to some default rules and the information of
 * Primitive types (number and string) and their wrappers: if there is no annotation, the serializer/deserializer will process them automatically.
   * the length occupied inside the bytes based on it's type, for example short will using 2 bytes.
   * the byte order will be treated as BIG_ENDIAN.
-* Arrays/Lists of primitive types (number and string) and arrays/lists of their wrappers: if there is no annotation, serializer will process them automatically too, it will get the length of array of list by reflect; but deserializer cannot work automatically, we must use annotation, such as SerializeArrayOrListLength, to tell the deserializer the length of it.
+* Arrays/Lists of primitive types (number and string) and arrays/lists of their wrappers: if there is no annotation, serializer will process them automatically too, it will get the length of array of list by reflect; but deserializer cannot work automatically, we must use annotation, such as ```SerializeArrayOrListLength```, to tell the deserializer the length of it.
 * Object field: will be processed as nested and recursively.
 
 ### Here are the annotations on the field
